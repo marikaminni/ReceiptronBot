@@ -7,6 +7,7 @@ from config import GEMINI_KEY
 client= genai.Client(api_key=GEMINI_KEY)
 
 def parse_receipt(image_path: str)-> dict:
+    print("Parsing receipt...")
     with open(image_path, 'rb') as f:
         image_bytes = f.read()
 
