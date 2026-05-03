@@ -1,3 +1,11 @@
 .env
 /app/images/*
-/db/receipt.db
+
+.idea/
+__pycache__/
+app/bot/__pycache__/
+app/db/__pycache__/
+app/db/receipt.db
+app/services/__pycache__/
+test_aiParser.py
+test_config.py
