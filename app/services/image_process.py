@@ -1,0 +1,1 @@
+#todo: migliora immagine prima di inviarla all'ai per una lettura migliore
