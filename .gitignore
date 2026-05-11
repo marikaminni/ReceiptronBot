@@ -1,11 +1,19 @@
 .env
+
+#immagini temporanee
 /app/images/*
 
+#
 .idea/
 __pycache__/
 app/bot/__pycache__/
 app/db/__pycache__/
 app/db/receipt.db
 app/services/__pycache__/
+.DS_Store
+**/.DS_Store
+
+#file test funzioni
 test_aiParser.py
 test_config.py
+test_formatter.py
