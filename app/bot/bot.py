@@ -11,7 +11,7 @@ import os
 
 async def start(update: Update, context) -> None:
     await update.message.reply_text("Hi, send me an image of a receipt")
-    #todo: aggiungere command help per descrivere funzionalità bot
+    #todo: add help command to describe bot features
 
 async def handle_image(update: Update, context) -> None:
     photo= update.message.photo[-1]
@@ -25,7 +25,12 @@ async def handle_image(update: Update, context) -> None:
     await file.download_to_drive(image_path)
 
     #send to ai_parser
-    parsed_data= parse_receipt(image_path)
+    try:
+        parsed_data= parse_receipt(image_path)
+    except Exception as e:
+        await update.message.reply_text(str(e))
+        return
+
     #save to db parsed data
     receipt_id=save_receipt(parsed_data)
     #delete image
@@ -42,6 +47,10 @@ async def recap(update: Update, context ) -> None:
 
     #filter data based on period
     filtered_receipt= filter_period(formatted_period)
+
+    if not filtered_receipt:
+        await update.message.reply_text("🧐 No data found for the selected period")
+        return
 
     #bot answer with formatted data
     await update.message.reply_text(format_db_filter(filtered_receipt))
